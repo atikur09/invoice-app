@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YY Metal Works</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
+
+</head>
+<body>
+    <!-- header section starts here  -->
+    <header>
+        <nav class="bg-white">
+            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+                <img src="/images/logo.png" class="h-40 mr-3" alt="" />
+                <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+                    <ul class=" flex flex-col p-4 md:p-0 mt-4 border md:space-x-8 md:mt-0 md:border-0 md:bg-white ">
+                        <div class="align-middle justify-center">
+                            <h2 class="font-bold text-3xl">YY Metal Works SDN BHD</h2>
+                            <p class="text-right text-base">15, Jalan KPB 16, Balakong Industrial Park, <br> 43300 Balakong, Selangor</p>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- header ends here  -->
+    </header>
+    <!-- main section  -->
+    <main class="max-w-screen-xl mx-auto p-4">
+        <div>
+            <!-- buyer name input section  -->
+            <label for="message" class="text-lg font-normal text-black">Buyer Name</label>
+            <div class="flex items-center rounded-lg bg-gray-50 dark:bg-gray-700">
+                <textarea id="buyer-details-input" rows="1" class="p-2.5 w-full text-sm text-gray-900 bg-whitetext-gray-900 border border-gray-700 rounded-lg focus:ring-blue-500 h-16" placeholder="Type buyer name here..."></textarea>
+                <button type="submit" id="detail-submit-btn" class="p-2 text-blue-600 rounded-full cursor-pointer"> <svg aria-hidden="true" class="w-11 h-6 rotate-90 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path></svg>
+                </button>
+            </div>
+        </div>
+        <!-- buyer name input section end here  -->
+        <section>
+            <h3 class="mt-6 text-center font-normal text-xl text-black">Please enter item details bellow and click add</h3>
+            <!-- intput section  -->
+            <div>
+                <div class="mt-6">
+                    <label for="message" class="text-lg font-normal text-black">Product Name</label>
+                    <textarea id="item-name-input" rows="1" class="p-2.5 w-full text-sm text-gray-900 bg-whitetext-gray-900 border border-gray-700 rounded-lg focus:ring-blue-500 h-16" placeholder="Type product name here..."></textarea>
+                </div>
+                <div class="mt-5">
+                    <label for="message" class="text-lg font-normal text-black">Quantity</label>
+                    <input id="item-quantity-input" class="p-2.5 w-full text-sm text-gray-900 bg-whitetext-gray-900 border border-gray-700 rounded-lg focus:ring-blue-500 h-16" placeholder="Type quantity..."></input>
+                </div>
+                <button id="add-details-btn" class="h-12 text-white text-xl w-40 mt-3 bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl rounded-lg">Add</button>
+            </div>
+            <!-- end input part  -->
+        </section>
+        <div class="text-xl text-lime-500 font-medium pt-6">
+            <marquee width="60%" direction="left" height="100px">You can add more items using input fields.
+            </marquee>
+        </div>
+        <!-- invoice part starts here  -->
+        <div id="invoice-pdf">
+            <section id="head">
+                <nav class="bg-white">
+                    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+                        <img src="/images/logo.png" class="h-40 mr-3" alt="" />
+                        <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+                            <ul class=" flex flex-col p-4 md:p-0 mt-4 border md:space-x-8 md:mt-0 md:border-0 md:bg-white ">
+                                <div class="align-middle justify-center">
+                                    <h2 class="font-bold text-3xl">YY Metal Works SDN BHD</h2>
+                                    <p class="text-right text-base">15, Jalan KPB 16, Balakong Industrial Park, <br> 43300 Balakong, Selangor</p>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </section>
+            <!-- invoice nav ends here  -->
+            <hr class="text-black">
+            <!-- buyer and seller info area  -->
+            <section id="test" class="grid grid-cols-2 gap-4 mt-5">
+                <div class="h-20 bg-slate-300 p-2 rounded">
+                    <div>
+                        <span class="text-black font-bold text-xl">
+                            Invoice To
+                        </span>
+                        <br>
+                        <span id="buyer-info">
+    
+                        </span>
+                    </div>
+                </div>
+                <div class="h-20 bg-slate-300 p-2 rounded">
+                    <div class="text-right ">
+                        <h3 class='text-black font-bold text-xl'>Invoice: #<span id="invoice-number"></span></h3>
+                        <p>Date: <span id="show-date"></span></p>
+                    </div>
+                </div>
+            </section>
+            <section class="mt-5">
+                <!-- invoice table starts here  -->
+                <div>
+                    <table class="w-full text-base text-left text-black">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Product Name</th>
+                                <th>Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody id="info-table">
+    
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <!-- button section starts here  -->
+            <section class="mt-5 mb-5 flex justify-center">
+                <div>
+                    <button type="submit" id="pdf-download" class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl rounded-lg hover:bg-gray-900 hover:text-white focus:ring-2 focus:ring-gray-500 focus:bg-gray-900">
+                        <svg aria-hidden="true" class="w-4 h-4 mr-2 fill-current" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M2 9.5A3.5 3.5 0 005.5 13H9v2.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 15.586V13h2.5a4.5 4.5 0 10-.616-8.958 4.002 4.002 0 10-7.753 1.977A3.5 3.5 0 002 9.5zm9 3.5H9V8a1 1 0 012 0v5z" clip-rule="evenodd"></path></svg>
+                        Download Invoice
+                    </button>
+                </div>
+            </section>
+        </div>
+        <!-- end main section  -->
+    </main>
+    <footer class="px-28 flex items-center justify-center h-20 bg-gray-900 text-white">
+        <div class="w-100 h-200">
+            <a href="https://www.facebook.com/webicord/">Developed by Webicord</a>
+        </div>      
+    </footer>
+    <!-- <script src="/js/invoicecode.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="/js/convertinpdf.js"></script> -->
+        <script src="/node_modules/js/app.js"></script>
+        <script src="/node_modules/js/invoicecode.js"></script>
+        <script src="/node_modules/js/convertinpdf.js"></script>
+</body>
+</html>
