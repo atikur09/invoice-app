@@ -73,11 +73,11 @@ addBtn.addEventListener('click', function(){
     const productPriceCell = document.createElement("td");
     // get product quantity from input 
     const getProductQuantity = document.getElementById('item-quantity-input');
-    
+
     const productQuantity = getProductQuantity.value;
 
     // set the value into table cell 
-    productPriceCell.textContent = productQuantity;
+    productPriceCell.textContent = `${productQuantity} Pcs`;
     newRow.appendChild(productPriceCell);
 
     // Add the new row to the table.
