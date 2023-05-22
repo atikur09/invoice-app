@@ -1,4 +1,4 @@
-
+/* 
 function addEnterToTextarea(textareaId, buttonId) {
     // Get the textarea element.
     const textarea = document.getElementById(textareaId);
@@ -15,4 +15,4 @@ function addEnterToTextarea(textareaId, buttonId) {
       }
     });
 }
-addEnterToTextarea('buyer-details-input', 'detail-submit-btn');
+addEnterToTextarea('buyer-details-input', 'detail-submit-btn'); */

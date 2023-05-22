@@ -4,7 +4,7 @@ const newDate = document.getElementById('show-date');
 newDate.innerText = date.toLocaleDateString();
 
 // set buyer info to invoice 
-
+// add event handeler for add btn 
 document.getElementById('detail-submit-btn').addEventListener('click', function(){
     const getBuyerName = document.getElementById('buyer-details-input');
     const buyerName = getBuyerName.value;
@@ -13,6 +13,21 @@ document.getElementById('detail-submit-btn').addEventListener('click', function(
     invoiceId.innerText = buyerName;
     getBuyerName.value = '';
 })
+// function and event handeler for kyeboard enter
+const setBuyerName = () =>{
+    const getInputField = document.getElementById('buyer-details-input');
+    const buyerName = getInputField.value;
+    const invoiceId = document.getElementById('buyer-info');
+    invoiceId.innerText = buyerName;
+    getInputField.value = '';
+}
+// keyboard enter event handeler added 
+document.getElementById('buyer-details-input').addEventListener('keypress', function(event){
+    if(event.key === 'Enter'){
+      setBuyerName();
+    }
+})
+
 
 // set invoice number 
 // function for if the number is less than four digit 
